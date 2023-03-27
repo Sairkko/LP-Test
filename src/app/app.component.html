@@ -1,0 +1,69 @@
+<div class="background-lp"></div>
+<div class="" id="form">
+  <div class="logo">
+    <img src="../assets/channels4_profile%20(1).jpg" class="" alt="">
+  </div>
+  <!-- Début de formulaire -->
+  <fieldset class="formulaire">
+    <br>
+    <div class="formulaire-container">
+      <div id="steps-block" class="mt-0 mb-4" *ngIf="step !== 'STEP_FINAL'">
+        <!-- progressbar -->
+        <!-- le stepper tout allumé à l'étape finale est une demande de GEM -->
+        <ul id="progressbar" class="my-0">
+          <li
+            [ngClass]="{'active': step === 'STEP_1'}">
+            Informations générales
+          </li>
+          <li [ngClass]="{'active': step === 'STEP_2'}">Formation(s)
+            souhaitée(s)
+          </li>
+          <li [ngClass]="{'active': step === 'STEP_3'}">Document(s)
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="step === 'STEP_1'" class="form-step etape-1">
+        <app-form-infos-candidats (nextStep)="goToNextStep($event)"></app-form-infos-candidats>
+      </div>
+      <div *ngIf="step === 'STEP_2'" class="form-step etape-2">
+        <app-form-formations
+          (nextStep)="goToNextStep($event)"
+          [formationsGotten]="formations">
+        </app-form-formations>
+      </div>
+      <div *ngIf="step === 'STEP_3'" class="form-step etape-3">
+        <app-form-documents (nextStep)="goToNextStep($event)"></app-form-documents>
+      </div>
+      <div *ngIf="step === 'STEP_FINAL'" class="form-step etape-finale">
+        <h4 class="text-center">
+          Votre pré-inscription a bien été enregistrée. Merci de l’intérêt que vous portez à notre école.
+          <br>
+          <br>
+          Un conseiller va prendre contact avec vous prochainement, par mail.
+          <br>
+          <br>
+          Pensez à consulter vos SPAM.
+        </h4>
+      </div>
+    </div>
+  </fieldset>
+</div>
+<div (click)="open(content);" id="footer-rgpd">
+  Voir nos conditions RGPD
+</div>
+<ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-title">Conditions RGPD</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss()">
+          </button>
+        </div>
+        <div class="modal-body">
+          Conformément au règlement général sur la protection des données (RGPD), Pôle Formation UIMM SUD vous informe que les
+          données communiquées dans ce formulaire font l’objet d’un traitement informatisé dont Pôle Formation UIMM SUD est
+          responsable. Elles sont destinées à gérer votre candidature et à vous informer sur les événements liés à votre
+          projet de formation en alternance. Ces données sont réservées à Pôle Formation UIMM SUD. Conformément aux lois «
+          Informatique & Liberté » et « RGPD », vous pouvez exercer vos droits d’accès à vos données, de rectification,
+          d’effacement, d’opposition, de limitation ou de portabilité en contactant rgpd@cfaiprovence.com. En cas de
+          différend, vous avez le droit d’introduire une réclamation (plainte) auprès de la Cnil.
+        </div>
+</ng-template>

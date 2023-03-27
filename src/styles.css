@@ -1,0 +1,354 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+@font-face {
+  font-family: "Encode Sans";
+  src: url("src/assets/fonts/encode-sans/encode-sans.normal.ttf");
+}
+@font-face {
+  font-family: "Encode Sans";
+  src: url("src/assets/fonts/encode-sans/encode-sans.normal-bold.ttf");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Encode Sans";
+  src: url("src/assets/fonts/encode-sans/encode-sans.normal-black.ttf");
+  font-weight: 800;
+}
+
+.form-select {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.form-group{
+  margin-bottom:1rem
+}
+
+/*  Les titres  */
+
+.petit-titre {
+  font-weight: normal;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+
+.grand-titre {
+  text-align: center;
+}
+
+* {margin: 0; padding: 0;}
+
+html {
+  height: 100%;
+
+  overflow-x: hidden;
+  margin: 0;
+}
+
+body {
+  background-color: inherit;
+  overflow: hidden;
+}
+
+.formulaire-container {
+  height: auto;
+}
+
+#form {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 100px;
+  position: relative;
+}
+
+.background-lp {
+  background: url("./assets/photo-1631631480669-535cc43f2327.jpeg") bottom / cover no-repeat;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  background-position-x: 50%;
+  background-position-y: 50%;
+  z-index: -2;
+  opacity: 0.9;
+}
+
+#form fieldset.form-step {
+  background: rgba(244, 244, 244, 0.80);
+  border: 0 none;
+  border-radius: 3px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 80%;
+  margin: 0 10%;
+  /*stacking fieldsets above each other*/
+  position: relative;
+  backdrop-filter: blur(2px);
+}
+
+@media (max-width: 575px) {
+  #form fieldset.form-step {
+    width: 90%;
+    margin: 0 5%;
+  }
+}
+
+#form fieldset.formulaire {
+  background: rgba(244, 244, 244, 0.80);
+  border: 0 none;
+  border-radius: 3px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 80%;
+  margin: 0 10%;
+  /*stacking fieldsets above each other*/
+  position: relative;
+  backdrop-filter: blur(2px);
+}
+
+/*buttons*/
+#form .action-button {
+  width: 150px;
+  background: #005584;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  padding: 10px 5px;
+  border: 1px dashed #005584;
+  border-radius: 32px;
+  outline: none;
+}
+
+#form .action-button:hover, #form .action-button:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #005584;
+}
+
+/*
+** Forms style
+*/
+.formulaire-container {
+  height: auto;
+}
+
+/*
+** Input Error style
+*/
+input.form-control.ng-invalid.ng-touched, select.form-control.ng-invalid.ng-touched, label.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+/* Datepicker popup icon */
+button.calendar, button.calendar:active {
+  width: 2.75rem;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAcCAYAAAAEN20fAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEUSURBVEiJ7ZQxToVAEIY/YCHGxN6XGOIpnpaEsBSeQC9ArZbm9TZ6ADyBNzAhQGGl8Riv4BLAWAgmkpBYkH1b8FWT2WK/zJ8ZJ4qiI6XUI3ANnGKWBnht2/ZBDRK3hgVGNsCd7/ui+JkEIrKtqurLpEWaphd933+IyI3LEIdpCYCiKD6HcuOa/nwOa0ScJEnk0BJg0UTUWJRl6RxCYEzEmomsIlPU3IPW+grIAbquy+q6fluy/28RIBeRMwDXdXMgXLj/B2uimRXpui4D9sBeRLKl+1N+L+t6RwbWrZliTTTr1oxYtzVWiTQAcRxvTX+eJMnlUDaO1vpZRO5NS0x48sIwfPc87xg4B04MCzQi8hIEwe4bl1DnFMCN2zsAAAAASUVORK5CYII=') !important;
+  background-repeat: no-repeat;
+  background-size: 23px;
+  background-position: center;
+}
+
+/*
+** Style des inputs en erreurs
+*/
+input.form-control.ng-invalid.ng-touched,
+select.form-control.ng-invalid.ng-touched,
+textarea.form-control.ng-invalid.ng-touched{
+  border-color: red;
+}
+
+ng-select.ng-invalid.ng-touched .ng-select-container {
+  border-color: #dc3545;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px #fde6e8;
+}
+
+.ng-select.ng-select-disabled>.ng-select-container {
+  background-color: #e9ecef;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  white-space: pre-line !important;
+}
+
+/*basic reset*/
+* {margin: 0; padding: 0;}
+
+html {
+  height: 100%;
+
+  overflow-x: hidden;
+  margin: 0;
+}
+
+body {
+  background-color: inherit;
+  overflow: hidden;
+  font-family: "Encode Sans", serif !important;
+}
+
+.tooltip-danger .tooltip-inner {
+  background-color: #c41515!important;
+  color: white!important;
+}
+.tooltip-danger .arrow::before {
+  border-top-color: #c41515;
+}
+
+.tooltip-success .tooltip-inner {
+  background-color: #00933f !important;
+  color: white!important;
+}
+.tooltip-success .arrow::before {
+  border-top-color: #00933f;
+}
+
+/*
+** Forms style
+*/
+.ms-form-container {
+  height: auto;
+}
+
+.background-container {
+  background: #2a72B9;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  background-position-x: 50%;
+  background-position-y: 50%;
+  z-index: -2;
+}
+
+#msform {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  position: relative;
+}
+
+@media (max-width: 350px) {
+  #steps-block {
+    width: 325px !important;
+  }
+}
+
+#steps-block {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+#form fieldset.form-step {
+  background: rgba(244, 244, 244, 0.80);
+  border: 0 none;
+  border-radius: 3px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 80%;
+  margin: 0 10%;
+
+  /*stacking fieldsets above each other*/
+  position: relative;
+}
+
+@media (max-width: 575px) {
+  #form fieldset.form-step {
+    width: 90%;
+    margin: 0 5%;
+  }
+}
+
+/*buttons*/
+#form .action-button {
+  width: 150px;
+  background: #2a72B9;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  padding: 10px 5px;
+  border: 1px #2a72B9;;
+  outline: none;
+}
+
+#form .action-button:hover, #form .action-button:focus {
+  background: #016aa1;
+}
+
+/*headings*/
+.fs-title {
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #2C3E50;
+  margin-bottom: 10px;
+}
+
+.fs-text {
+  font-weight: normal;
+  font-size: 17px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.fs-subtitle {
+  font-weight: normal;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/*
+** Input Error style
+*/
+input.form-control.ng-invalid.ng-touched, select.form-control.ng-invalid.ng-touched, label.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+/* Datepicker popup icon */
+button.calendar, button.calendar:active {
+  width: 2.75rem;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAcCAYAAAAEN20fAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEUSURBVEiJ7ZQxToVAEIY/YCHGxN6XGOIpnpaEsBSeQC9ArZbm9TZ6ADyBNzAhQGGl8Riv4BLAWAgmkpBYkH1b8FWT2WK/zJ8ZJ4qiI6XUI3ANnGKWBnht2/ZBDRK3hgVGNsCd7/ui+JkEIrKtqurLpEWaphd933+IyI3LEIdpCYCiKD6HcuOa/nwOa0ScJEnk0BJg0UTUWJRl6RxCYEzEmomsIlPU3IPW+grIAbquy+q6fluy/28RIBeRMwDXdXMgXLj/B2uimRXpui4D9sBeRLKl+1N+L+t6RwbWrZliTTTr1oxYtzVWiTQAcRxvTX+eJMnlUDaO1vpZRO5NS0x48sIwfPc87xg4B04MCzQi8hIEwe4bl1DnFMCN2zsAAAAASUVORK5CYII=') !important;
+  background-repeat: no-repeat;
+  background-size: 23px;
+  background-position: center;
+}
+
+/*
+** Style des inputs en erreurs
+*/
+input.form-control.ng-invalid.ng-touched,
+select.form-control.ng-invalid.ng-touched,
+textarea.form-control.ng-invalid.ng-touched{
+  border-color: red;
+}
+
+ng-select.ng-invalid.ng-touched .ng-select-container {
+  border-color: #dc3545;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px #fde6e8;
+}
+
+.ng-select.ng-select-disabled>.ng-select-container {
+  background-color: #e9ecef;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  white-space: pre-line !important;
+}
+

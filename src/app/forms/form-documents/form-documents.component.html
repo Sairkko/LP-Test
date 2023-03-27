@@ -1,0 +1,89 @@
+<form [formGroup]="formDocuments" (submit)="onSubmitDocuments()" method="POST">
+  <h2 class="text-center mb-4" id="form-info-candidat-anchor">Document(s)</h2>
+  <h3 class="text-doc text-center">
+    Merci de nous faire parvenir les documents ci-dessous afin d’étudier votre candidature.
+  </h3>
+  <h3 class="petit-titre">Le symbole <span class="text-danger">*</span> signifie information obligatoire</h3>
+
+  <div class="w-100 mt-4"></div>
+
+  <div *ngIf="f['cv'].errors">
+    <label class="col-sm-12 p-0 text-danger" *ngIf="f['cv'].errors['required'] && f['cv'].touched">Vous devez fournir votre CV</label>
+    <label class="col-sm-12 p-0 text-danger" *ngIf="f['cv'].errors['maxSize'] && f['cv'].touched">La taille du document spécifié est supérieure à 10Mo, sélectionnez un document plus petit</label>
+  </div>
+  <div class="form-group">
+    <div class="form-row">
+      <label class="col-sm-12 px-0 mb-1">Votre curriculum vitae <span class="text-danger">*</span></label>
+      <div class="col-sm-12 form-check-inline mr-0 pr-0">
+        <div *ngIf="!f['cv'].value.isUploading && !f['cv'].value.isFinished">
+          <input type="file" class="form-control" id="cv" (change)="onFileChange($event, f['cv'])" [disabled]="isLoading" required>
+          <label class="form-label" for="cv" *ngIf="!f['cv'].value.file" [class.ng-invalid]="f['cv'].invalid" [class.ng-touched]="f['cv'].touched"></label>
+          <label class="form-label file-name-overflow" for="cv" *ngIf="f['cv'].value.file" [class.ng-invalid]="f['cv'].invalid" [class.ng-touched]="f['cv'].touched">{{ f['cv'].value.file.name }}</label>
+        </div>
+        <div *ngIf="f['cv'].value.isUploading && !f['cv'].value.isFinished" class="col-sm custom-file form-check-inline ml-auto pr-0 mr-0 mr-sm-3">
+          <ngb-progressbar *ngIf="f['cv'].value.isFinished === false" type="primary" [value]="f['cv'].value.progress" height="20px" [striped]="true" [showValue]="false" [animated]="true">Envoi en cours... {{ f['cv'].value.progress }}%</ngb-progressbar>
+          <label *ngIf="f['cv'].value.isFinished === true">Votre CV a bien été envoyé</label>
+        </div>
+        <div *ngIf="!f['cv'].value.isUploading && f['cv'].value.isFinished" class="col-sm custom-file form-check-inline ml-auto pr-0 mr-0 mr-sm-3">
+          <label class="ml-sm-3">Votre CV a bien été envoyé</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="f['lettre_motivation'].errors">
+    <label class="col-sm-12 p-0 text-danger" *ngIf="f['lettre_motivation'].errors['required'] && f['lettre_motivation'].touched">Vous devez fournir votre lettre de motivation pour cette formation</label>
+    <label class="col-sm-12 p-0 text-danger" *ngIf="f['lettre_motivation'].errors['maxSize'] && f['lettre_motivation'].touched">La taille du document spécifié est supérieure à 10Mo, sélectionnez un document plus petit</label>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <label class="col-sm-12 px-0 px-sm-3 mb-1">Votre lettre de motivation</label>
+      <div class="col-sm-12 form-check-inline mr-0 pr-0">
+        <div *ngIf="!f['lettre_motivation'].value.isUploading && !f['lettre_motivation'].value.isFinished">
+          <input type="file" class="form-control" id="lettre-motivation" (change)="onFileChange($event, f['lettre_motivation'])" [disabled]="isLoading" required>
+          <label class="form-label" for="lettre-motivation" *ngIf="!f['lettre_motivation'].value.file" [class.ng-invalid]="f['lettre_motivation'].invalid" [class.ng-touched]="f['lettre_motivation'].touched"></label>
+          <label class="form-label file-name-overflow" for="lettre-motivation" *ngIf="f['lettre_motivation'].value.file" [class.ng-invalid]="f['lettre_motivation'].invalid" [class.ng-touched]="f['lettre_motivation'].touched">{{ f['lettre_motivation'].value.file.name }}</label>
+        </div>
+        <div *ngIf="f['lettre_motivation'].value.isUploading && !f['lettre_motivation'].value.isFinished" class="col-sm custom-file form-check-inline ml-auto pr-0 mr-0 mr-sm-3">
+          <ngb-progressbar *ngIf="f['lettre_motivation'].value.isFinished === false" type="primary" [value]="f['lettre_motivation'].value.progress" height="20px" [striped]="true" [showValue]="false" [animated]="true">Envoi en cours... {{ f['lettre_motivation'].value.progress }}%</ngb-progressbar>
+          <label *ngIf="f['lettre_motivation'].value.isFinished === true">Votre lettre de motivation a bien été envoyée</label>
+        </div>
+        <div *ngIf="!f['lettre_motivation'].value.isUploading && f['lettre_motivation'].value.isFinished" class="col-sm custom-file form-check-inline ml-auto pr-0 mr-0 mr-sm-3">
+          <label class="ml-sm-3">Votre lettre de motivation a bien été envoyée</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="f['diplome'].errors">
+    <label class="col-sm-12 p-0 text-danger" *ngIf="f['diplome'].errors['required'] && f['diplome'].touched">Vous devez fournir votre diplôme</label>
+    <label class="col-sm-12 p-0 text-danger" *ngIf="f['diplome'].errors['maxSize'] && f['diplome'].touched">La taille du document spécifié est supérieure à 10Mo, sélectionnez un document plus petit</label>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <label class="col-sm-12 px-0 px-sm-3 mb-1">Votre diplôme</label>
+      <div class="col-sm-12 form-check-inline mr-0 pr-0">
+        <div *ngIf="!f['diplome'].value.isUploading && !f['diplome'].value.isFinished">
+          <input type="file" class="form-control" id="diplome" (change)="onFileChange($event, f['diplome'])" [disabled]="isLoading" required>
+          <label class="form-label" for="diplome" *ngIf="!f['diplome'].value.file" [class.ng-invalid]="f['diplome'].invalid" [class.ng-touched]="f['diplome'].touched"></label>
+          <label class="form-label file-name-overflow" for="diplome" *ngIf="f['diplome'].value.file" [class.ng-invalid]="f['diplome'].invalid" [class.ng-touched]="f['diplome'].touched">{{ f['diplome'].value.file.name }}</label>
+        </div>
+        <div *ngIf="f['diplome'].value.isUploading && !f['diplome'].value.isFinished" class="col-sm custom-file form-check-inline ml-auto pr-0 mr-0 mr-sm-3">
+          <ngb-progressbar *ngIf="f['diplome'].value.isFinished === false" type="primary" [value]="f['diplome'].value.progress" height="20px" [striped]="true" [showValue]="false" [animated]="true">Envoi en cours... {{ f['diplome'].value.progress }}%</ngb-progressbar>
+          <label *ngIf="f['diplome'].value.isFinished === true">Votre diplôme a bien été envoyé</label>
+        </div>
+        <div *ngIf="!f['diplome'].value.isUploading && f['diplome'].value.isFinished" class="col-sm custom-file form-check-inline ml-auto pr-0 mr-0 mr-sm-3">
+          <label class="ml-sm-3">Votre diplôme a bien été envoyé</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row mt-3">
+    <div class="form-group col-md-12 d-flex justify-content-center">
+      <button *ngIf="!isLoading" type="submit" class="next action-button">TERMINER</button>
+      <button *ngIf="isLoading" type="submit" disabled class="next action-button">
+        <img src="../../../assets/loading.gif" alt="Chargement en cours..." height="24">
+      </button>
+    </div>
+  </div>
+</form>

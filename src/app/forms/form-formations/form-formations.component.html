@@ -1,0 +1,50 @@
+<form [formGroup]="formFormationCandidat" (submit)="onSubmitFormationCandidat()" method="POST">
+  <h2 class="text-center mb-4" id="form-formation-anchor"> Formation(s) souhaitée(s)</h2>
+  <h3 class="petit-titre mb-1">Le symbole <span class="text-danger">*</span> signifie information obligatoire</h3>
+  <h3 class="petit-titre">Clique sur le symbole <span class="star-not-selected position-relative" style="top: 4px">★
+  </span> pour sélectionner une formation prioritaire si vous avez choisi plusieurs formations
+  </h3>
+
+  <div *ngIf="formations === null">Chargement en cours...</div>
+  <div *ngIf="formations !== null">
+    <div *ngIf="f['formations'].errors" class="mb-4">
+      <label class="text-danger font-weight-bold" *ngIf="f['formations'].errors['minFormations'] && f['formations'].touched">Vous devez indiquer au moins une formation</label>
+    </div>
+    <div *ngIf="niveaux != null" class="card-cfai">
+      <div *ngFor="let niveau of niveaux; let idx_niveau = index; let last = last" [class.mb-3]="last">
+        <ngb-accordion #accordion class="card-lp">
+          <ngb-panel id="niveau-{{ idx_niveau }}">
+            <ng-template ngbPanelTitle>
+              <span><span class="d-inline-block"
+                          [class.is-expanded-char]="accordion.isExpanded('niveau-'+idx_niveau)">&gt;</span> {{ niveau }}</span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <div class="my-1 max-size-formation" *ngFor="let formation of getFormationsByNiveau(niveau)"
+                   formArrayName="formations">
+                <div class="custom-control custom-checkbox ml-4">
+                  <input type="checkbox" class="custom-control-input" [value]="formation.id"
+                         [formControlName]="getIndexFormationById(formation.id)" id="formation-{{ formation.id }}">
+                  <label class="custom-control-label label-formation" for="formation-{{ formation.id }}">{{ formation.nom }}</label>
+                    <span *ngIf="isChecked(formation.id)"
+                          [class.star-selected]="formation.id === f['id_formation_prioritaire'].value"
+                          [class.star-not-selected]="formation.id !== f['id_formation_prioritaire'].value"
+                          class="d-inline d-inline star-size ml-2"
+                          style="top: -3px; cursor: pointer;" (click)="onStarClicked(formation.id)">
+                      <span class="center-star-in-container">★</span></span>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </div>
+    </div>
+  </div>
+  <div class="form-row mt-3">
+    <div class="form-group col-md-12 d-flex justify-content-center">
+      <button *ngIf="!isLoading" type="submit" class="next action-button">SUIVANT</button>
+      <button *ngIf="isLoading" type="submit" disabled class="next action-button">
+        <img src="../../../assets/loading.gif" alt="Chargement en cours..." height="24">
+      </button>
+    </div>
+  </div>
+</form>

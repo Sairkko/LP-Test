@@ -1,0 +1,57 @@
+.text-doc {
+  font-weight: normal;
+  font-size: 17px;
+  color: #666;
+  margin-bottom: 20px;
+  margin-left: auto;
+  padding-right: 0;
+  margin-right: 0;
+}
+
+.mr-0 {
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.custom-file{
+  position:relative;
+  display:inline-block;
+  width:100%;
+  height:calc(1.5em + .75rem + 2px);
+  margin-bottom:0
+}
+
+.custom-file-input{
+  position:relative;
+  z-index:2;
+  width:100%;
+  height:calc(1.5em + .75rem + 2px);
+  margin:0;
+  overflow:hidden;
+  opacity:0
+}
+/* Masquer le texte qui dépasse sur mobile dans le label des input file */
+.file-name-overflow {
+  word-break: break-all;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/*
+** Bootstrap 4 Input file translation
+*/
+.custom-file-input:lang(fr) ~ .custom-file-label::after {
+  content: "Parcourir";
+}
+
+.text-rouge {
+  color: red;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -5px;
+  margin-left: -5px;
+}

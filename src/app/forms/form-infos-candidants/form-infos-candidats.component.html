@@ -1,0 +1,125 @@
+<form [formGroup]="formInfosCandidats" (submit)="onSubmitInfoCandidat()" method="POST">
+  <h2 class="grand-titre mb-4" id="form-info-candidate">Informations générales</h2>
+  <h3 class="petit-titre">Le symbole <span class="text-rouge">*</span> signifie information obligatoire</h3>
+
+  <div class="row">
+    <div class="form-group col-md-12">
+      <label class="mb-1" for="civilite-select">Civilité <span class="text-danger">*</span></label>
+      <select class="form-select" id="civilite-select" formControlName="civilite">
+        <option selected disabled>Sélectionnez votre civilité</option>
+        <option value="H">Homme</option>
+        <option value="F">Femme</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label class="mb-1" for="nom">Nom <span class="text-danger">*</span></label>
+      <input class="form-control " type="text" id="nom" formControlName="nom" maxlength="45">
+    </div>
+
+    <div class="form-group col-md-6">
+      <label class="mb-1" for="prenom">Prénom <span class="text-danger">*</span></label>
+      <input class="form-control" type="text" id="prenom" formControlName="prenom" maxlength="45">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label class="mb-1" for="date-naissance">Date de naissance <span class="text-danger">*</span></label>
+      <div class="input-group">
+        <input class="form-control" placeholder="JJ/MM/AAAA"
+               formControlName="date_naissance"
+               [maxDate]="maxDateNaissance"
+               [minDate]="minDateNaissance"
+               ngbDatepicker
+               #dateNaissance="ngbDatepicker"
+               id="date-naissance">
+          <button class="btn btn-outline-secondary calendar bg-white" type="button" (click)="dateNaissance.toggle()"></button>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label class="mb-1" for="portable">Portable <span class="text-danger">*</span></label>
+      <input [patterns]="telephonePattern" mask="Z0 00 00 00 00 00" [validation]="false" [dropSpecialCharacters]="false" class="form-control" type="text" id="portable" formControlName="portable" maxlength="23">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label class="mb-1" for="email">Email <span class="text-danger">*</span></label>
+      <input type="text" id="email" formControlName="email" class="form-control" maxlength="255">
+    </div>
+    <div class="form-group col-md-6">
+      <label class="mb-1" for="adresse">Adresse <span class="text-danger">*</span></label>
+      <input type="text" id="adresse" formControlName="adresse" class="form-control" maxlength="163">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label class="mb-1" for="code_postal">Code postal <span class="text-danger">*</span></label>
+      <input type="text" id="code_postal" formControlName="code_postal" class="form-control" maxlength="5">
+    </div>
+  </div>
+  <div formArrayName="responsable_legal" *ngIf="responsableOn">
+    <div [formGroupName]="0">
+      <div class="row">
+        <div class="form-group col-md-6">
+        <label class="mb-1" for="reponsable_civilite">Civilité <span class="text-danger">*</span></label>
+        <select class="form-select" id="reponsable_civilite" formControlName="civilite" >
+          <option selected disabled>Sélectionnez votre civilité</option>
+          <option value="H">Homme</option>
+          <option value="F">Femme</option>
+        </select>
+      </div>
+        <div class="form-group col-md-6">
+          <label class="mb-1" for="nom_responsable"> Nom Responsable légal <span class="text-danger">*</span></label>
+          <input type="text" id="nom_responsable" formControlName="nom" class="form-control" maxlength="45">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label class="mb-1" for="prenom_responsable">Prenom Responsable légal <span class="text-danger">*</span></label>
+          <input class="form-control maj-text" type="text" id="prenom_responsable" formControlName="prenom" maxlength="45">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label class="mb-1" for="portable_responsable">Portable Responsable légal <span class="text-danger">*</span></label>
+          <input [patterns]="telephonePattern" mask="Z0 00 00 00 00 00" [validation]="false" [dropSpecialCharacters]="false" class="form-control" type="text" id="portable_responsable" formControlName="portable" maxlength="23">
+        </div>
+      </div>
+
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label class="mb-1" for="email_responsable">Email Responsable légal <span class="text-danger">*</span></label>
+        <input type="text" id="email_responsable" formControlName="email" class="form-control" maxlength="255">
+      </div>
+      <div class="form-group col-md-6">
+        <label class="mb-1" for="adresse_responsable">Adresse Responsable légal <span class="text-danger">*</span></label>
+        <input type="text" id="adresse_responsable" formControlName="adresse" class="form-control" maxlength="163">
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label class="mb-1" for="code_postal_responsable">Code Postal Responsable légal <span class="text-danger">*</span></label>
+        <input type="text" id="code_postal_responsable" formControlName="code_postal" class="form-control" maxlength="5">
+      </div>
+      <div class="form-group col-md-6">
+        <label class="mb-1" for="ville_responsable">Ville Responsable légal<span class="text-danger">*</span></label>
+        <input type="text" id="ville_responsable" formControlName="ville" class="form-control" maxlength="163">
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="form-group col-md-12 d-flex justify-content-center">
+      <button *ngIf="!isLoading" type="submit" class="next action-button">SUIVANT</button>
+      <button *ngIf="isLoading" type="submit" disabled class="next action-button">
+        <img src="../../../assets/loading.gif" alt="Chargement en cours..." height="24">
+      </button>
+    </div>
+  </div>
+</form>
