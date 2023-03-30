@@ -71,6 +71,16 @@
                 },
                 "fonts": true
               }
+            },
+            "local": {
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": true
+              }
             }
           },
           "defaultConfiguration": "production"
@@ -87,6 +97,9 @@
 
             "dev": {
               "browserTarget": "LPTest:build:dev"
+            },
+            "local": {
+              "browserTarget": "LPTest:build:local"
             }
           },
           "defaultConfiguration": "development"

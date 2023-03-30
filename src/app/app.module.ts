@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormInfosCandidatsComponent } from './forms/form-infos-candidants/form-infos-candidats.component';
-import {IConfig, NgxMaskDirective, provideNgxMask} from 'ngx-mask'
+import { NgxMaskDirective, provideNgxMask} from 'ngx-mask'
 import {registerLocaleData} from "@angular/common";
 import { NgbDateAdapter, NgbDateParserFormatter, NgbDatepickerI18n, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDatepickerI18n, I18n } from './config/ng-bootstrap-datepicker-i18n';
@@ -15,7 +15,7 @@ import { NgbIsoDateAdapter } from './config/ngb-iso-date-adapter';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ToastrModule } from 'ngx-toastr';
 import {AppService} from "./app.service";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { FormDocumentsComponent } from './forms/form-documents/form-documents.component';
 import {FormFormationsComponent} from "./forms/form-formations/form-formations.component";
@@ -38,7 +38,6 @@ import {NgSelectModule} from "@ng-select/ng-select";
         FormsModule,
         HttpClientModule,
         ToastrModule.forRoot(),
-        HttpClientModule,
         NgSelectModule,
     ],
   providers: [provideNgxMask(),

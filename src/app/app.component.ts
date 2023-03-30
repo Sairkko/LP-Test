@@ -19,7 +19,6 @@ export class AppComponent implements OnInit{
               public modal: NgbModal,
               private appService: AppService,
               ) {
-
   }
 
   ngOnInit(): void {
